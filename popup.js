@@ -3,13 +3,23 @@ import { $ } from "./utils.js";
 const submitBtn = $("#submit_btn");
 const textarea = $("textarea");
 
+// Load saved subjects when popup opens
+chrome.storage?.local?.get(["subjects"], (result) => {
+  if (result?.subjects) {
+    textarea.value = result.subjects;
+  }
+});
+
+// Save subjects whenever textarea changes
+textarea.addEventListener("input", () => {
+  chrome.storage?.local?.set({ subjects: textarea.value });
+});
+
 submitBtn.addEventListener("click", () => {
   if (textarea.value === "") {
     alert("Bạn chưa nhập môn học");
     return;
   }
-  const proceed = confirm("Bạn có chắc chắn muốn đăng ký những môn học này?");
-  if (!proceed) return;
   const subjects = textarea.value;
   chrome.tabs?.query(
     {

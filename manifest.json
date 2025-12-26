@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "description": "Tool đăng ký học phần UIT mới",
   "author": "tuankietcoder",
-  "permissions": [],
+  "permissions": ["storage"],
   "host_permissions": [
     "https://dkhp.uit.edu.vn/*",
     "http://127.0.0.1:5173/*",
