@@ -15,8 +15,9 @@ function DangKy(monDangKyString) {
   try {
     var listMonDangKy = monDangKyString
       .trim()
-      .split("\n")
-      .map((it) => it.trim());
+      .split(/[\n,]+/)
+      .map((it) => it.trim())
+      .filter((it) => it !== "");
 
     var allRows = [...document.querySelectorAll("table > tbody > tr")];
 
